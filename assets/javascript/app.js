@@ -67,11 +67,18 @@ function displayTopics() {
     console.log(response.data[0].images.original.url);
     for (i = 0; i < response.data.length; i++) {
       console.log(response.data[i].images.original.url);
-      $(".Gif-result").prepend(
-        "<div class='Gif-container'><img class='img-fluid Gif-Individual' src='" +
-          response.data[i].images.original.url +
-          "></div>"
+      var gif = $("<img class='img-fluid Gif-Individual'>").attr(
+        "src",
+        response.data[i].images.original.url
       );
+      var divTopicContainer = $("<div class='Gif-container'></div>");
+      divTopicContainer.append(gif);
+      $(".Gif-result").prepend(divTopicContainer);
+      //   $(".Gif-result").prepend(
+      //     "<div class='Gif-container'><img class='img-fluid Gif-Individual' src='" +
+      //       response.data[i].images.original.url +
+      //       "></a></div>"
+      //   );
     }
   });
 }
