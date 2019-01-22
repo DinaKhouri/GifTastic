@@ -90,6 +90,7 @@ body {
 
 .Gif-container {
   display: inline-block;
+
   opacity: 1;
   height: 200px;
   width: 300px;
@@ -102,12 +103,15 @@ body {
   -webkit-box-shadow: inset 5px 5px 30px 5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: inset 5px 5px 30px 5px rgba(0, 0, 0, 0.75);
   box-shadow: inset 5px 5px 30px 5px rgba(0, 0, 0, 0.75);
+  z-index: 3;
 }
 
 .Gif-Individual {
   height: 150px;
-  margin: 0;
   padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 3;
 }
 
 .Initial-button {
@@ -115,6 +119,9 @@ body {
   margin-bottom: 13px;
   height: 83px;
   width: 83px;
+  padding: 5px;
+  overflow: hidden;
+  word-wrap: break-word;
   border-radius: 20px;
   box-shadow: 0.5px 0.5px 1.5px 0.5px #888888;
   /* background-color: #59cdfb; */
@@ -178,6 +185,7 @@ body {
   color: rgb(70, 70, 70);
 }
 .Initial-buttons {
+  overflow: auto;
   padding: 15px;
   height: 428px;
 }
@@ -213,4 +221,32 @@ body {
   right: 20px;
   bottom: 100px;
   z-index: 3;
+}
+
+h6 {
+  position: relative;
+  top: 20px;
+  font-family: comic Arial, Helvetica, sans-serif;
+}
+
+.data-screen {
+  position: absolute;
+  font-size: 0.1em;
+  height: 150px;
+  width: 250px;
+  background-color: whitesmoke;
+  color: #6c757d;
+  position: relative;
+  top: -150px;
+  left: 0px;
+  opacity: 0;
+  text-align: center;
+}
+
+.data-screen:hover {
+  opacity: 0.8;
+}
+
+.opacity:hover {
+  opacity: 0.5;
 }

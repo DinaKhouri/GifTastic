@@ -23,7 +23,7 @@ $(".Gif-container").mouseover(function() {
   event.preventDefault();
   console.log("zoom");
   $(this)
-    .addClass("animated pulse ")
+    .addClass("animated pulse  ")
     .one(
       "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
       function() {
@@ -31,6 +31,7 @@ $(".Gif-container").mouseover(function() {
       }
     );
 });
+
 //zoom in for any of the favs
 $(".Gif-favs").mouseover(function() {
   event.preventDefault();
@@ -43,6 +44,12 @@ $(".Gif-favs").mouseover(function() {
       }
     );
 });
+//show data for gifs
+// $(".Gif_Individual").mouseover(function() {
+//   event.preventDefault();
+//   console.lof(this);
+//   $(this).css("z-index", "-2");
+// });
 
 // start the actual code
 //define preset topics
@@ -67,12 +74,25 @@ function displayTopics() {
     console.log(response.data[0].images.original.url);
     for (i = 0; i < response.data.length; i++) {
       console.log(response.data[i].images.original.url);
-      var gif = $("<img class='img-fluid Gif-Individual'>").attr(
+      console.log(gifinfo);
+      var gif = $("<img class='img-fluid Gif-Individual opacity'>").attr(
         "src",
         response.data[i].images.original.url
       );
-      var divTopicContainer = $("<div class='Gif-container'></div>");
-      divTopicContainer.append(gif);
+      var divTopicContainer = $(
+        "<div class='Gif-container favSrc='" +
+          response.data[i].images.original.url +
+          "'></div>"
+      );
+      var gifinfo = $(
+        "<div class = 'data-screen'><h6>" +
+          response.data[i].title +
+          "<br>" +
+          "Rating: " +
+          response.data[i].rating.toUpperCase() +
+          "</h6>"
+      );
+      divTopicContainer.append(gif, gifinfo);
       $(".Gif-result").prepend(divTopicContainer);
       //   $(".Gif-result").prepend(
       //     "<div class='Gif-container'><img class='img-fluid Gif-Individual' src='" +
@@ -80,6 +100,19 @@ function displayTopics() {
       //       "></a></div>"
       //   );
     }
+    AddToFavs();
+  });
+}
+
+//function to add to favourits
+function AddToFavs() {
+  $(".Gif-container").on("click", function(event) {
+    event.preventDefault();
+    console.log("picking fav");
+    var myfavSrc = $(this).attr("src", $(this).attr("favSrc"));
+    console.log(myfavSrc);
+    var favAdded = $("<img class='img-fluid Gif-favs' src='" + myfavSrc + "'>");
+    $(".Inner-favs").prepend(favAdded);
   });
 }
 
