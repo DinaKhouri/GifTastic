@@ -35,17 +35,19 @@ function pulse() {
 }
 
 //zoom in for any of the favs
-$(".Gif-favs").mouseover(function() {
-  event.preventDefault();
-  $(this)
-    .addClass("animated pulse ")
-    .one(
-      "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
-      function() {
-        $(this).removeClass("animated pulse ");
-      }
-    );
-});
+function zoomin() {
+  $(".Gif-favs").mouseover(function() {
+    event.preventDefault();
+    $(this)
+      .addClass("animated pulse ")
+      .one(
+        "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
+        function() {
+          $(this).removeClass("animated pulse ");
+        }
+      );
+  });
+}
 
 // start the actual code
 //define preset topics
@@ -92,17 +94,18 @@ function displayTopics() {
     pulse();
     AddToFavs();
     myHover();
+    zoomin();
   });
 }
 
 //function for hover
 function myHover() {
-  $(".Gif-result").mouseover(function() {
+  $(".Gif-container").mouseover(function() {
     event.preventDefault();
     console.log("im hovering");
-    console.log(myhover);
     var myhover = $(this).attr("animated");
-    $(this).attr("src", myhover);
+    console.log(myhover);
+    // $(this).attr("src", myhover);
   });
 }
 
