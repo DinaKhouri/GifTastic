@@ -91,7 +91,7 @@ function displayTopics() {
 
 //function to add to favourits
 function AddToFavs() {
-  $(".Gif-container").on("click", function(event) {
+  $(".Gif-container").on("dblclick", function(event) {
     event.preventDefault();
     console.log("picking fav");
     var myfavSrc = $(this).attr("favSrc");
