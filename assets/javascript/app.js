@@ -23,7 +23,7 @@ $(".Gif-container").mouseover(function() {
   event.preventDefault();
   console.log("zoom");
   $(this)
-    .addClass("animated pulse  ")
+    .addClass("animated pulse ")
     .one(
       "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
       function() {
@@ -44,20 +44,10 @@ $(".Gif-favs").mouseover(function() {
       }
     );
 });
-//show data for gifs
-// $(".Gif_Individual").mouseover(function() {
-//   event.preventDefault();
-//   console.lof(this);
-//   $(this).css("z-index", "-2");
-// });
 
 // start the actual code
 //define preset topics
 var topics = ["kids", "pets", "brownies", "friends", "sports"];
-
-// "//api.giphy.com/v1/gifs/search?api_key=2lF9sKMxxHfZIY0plsOMnxN63wpaqwix&q=" +
-//   topic +
-//   "&limit=10&offset=0&rating=G&lang=en";
 
 function displayTopics() {
   var newTopic = $(this).attr("data-name");
@@ -80,7 +70,7 @@ function displayTopics() {
         response.data[i].images.original.url
       );
       var divTopicContainer = $(
-        "<div class='Gif-container favSrc='" +
+        "<div class='Gif-container' favSrc='" +
           response.data[i].images.original.url +
           "'></div>"
       );
@@ -94,11 +84,6 @@ function displayTopics() {
       );
       divTopicContainer.append(gif, gifinfo);
       $(".Gif-result").prepend(divTopicContainer);
-      //   $(".Gif-result").prepend(
-      //     "<div class='Gif-container'><img class='img-fluid Gif-Individual' src='" +
-      //       response.data[i].images.original.url +
-      //       "></a></div>"
-      //   );
     }
     AddToFavs();
   });
@@ -109,7 +94,7 @@ function AddToFavs() {
   $(".Gif-container").on("click", function(event) {
     event.preventDefault();
     console.log("picking fav");
-    var myfavSrc = $(this).attr("src", $(this).attr("favSrc"));
+    var myfavSrc = $(this).attr("favSrc");
     console.log(myfavSrc);
     var favAdded = $("<img class='img-fluid Gif-favs' src='" + myfavSrc + "'>");
     $(".Inner-favs").prepend(favAdded);
