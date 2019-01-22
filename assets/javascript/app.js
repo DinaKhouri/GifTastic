@@ -19,18 +19,20 @@ $(".arrow-left").mouseover(function() {
 });
 
 //zoom in and out on hover for any gif in the gifresult
-$(".Gif-container").mouseover(function() {
-  event.preventDefault();
-  console.log("zoom");
-  $(this)
-    .addClass("animated pulse ")
-    .one(
-      "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
-      function() {
-        $(this).removeClass("animated pulse ");
-      }
-    );
-});
+function pulse() {
+  $(".Gif-container").mouseover(function() {
+    event.preventDefault();
+    console.log("zoom");
+    $(this)
+      .addClass("animated pulse ")
+      .one(
+        "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
+        function() {
+          $(this).removeClass("animated pulse ");
+        }
+      );
+  });
+}
 
 //zoom in for any of the favs
 $(".Gif-favs").mouseover(function() {
@@ -67,10 +69,12 @@ function displayTopics() {
       console.log(gifinfo);
       var gif = $("<img class='img-fluid Gif-Individual opacity'>").attr(
         "src",
-        response.data[i].images.original.url
+        response.data[i].images.original_still.url
       );
       var divTopicContainer = $(
         "<div class='Gif-container' favSrc='" +
+          response.data[i].images.original_still.url +
+          "'animated='" +
           response.data[i].images.original.url +
           "'></div>"
       );
@@ -85,7 +89,20 @@ function displayTopics() {
       divTopicContainer.append(gif, gifinfo);
       $(".Gif-result").prepend(divTopicContainer);
     }
+    pulse();
     AddToFavs();
+    myHover();
+  });
+}
+
+//function for hover
+function myHover() {
+  $(".Gif-result").mouseover(function() {
+    event.preventDefault();
+    console.log("im hovering");
+    console.log(myhover);
+    var myhover = $(this).attr("animated");
+    $(this).attr("src", myhover);
   });
 }
 
