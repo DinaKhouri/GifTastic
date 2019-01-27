@@ -116,23 +116,6 @@ function animate() {
   });
 }
 
-//function for hover
-// function myHover() {
-//   $(".Gif-container").mouseover(function() {
-//     event.preventDefault();
-//     console.log("im hovering");
-//     var myhover = $(this).attr("animated");
-//     // console.log(myhover);
-//     // var myhoverElement = $(
-//     //   "<img class='img-fluid Gif-Individual opacity'>"
-//     // ).attr("src", myhover);
-//     // $(this).hide(gif);
-//     // $(this).append(myhoverElement, gifinfo);
-//     // $(".Gif-result").prepend(divTopicContainer);
-//     // $(this).attr("src", myhover);
-//   });
-// }
-
 //function to add to favourits
 function AddToFavs() {
   $(".Gif-container").on("dblclick", function(event) {
