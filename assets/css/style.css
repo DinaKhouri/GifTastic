@@ -90,7 +90,6 @@ body {
 
 .Gif-container {
   display: inline-block;
-
   opacity: 1;
   height: 200px;
   width: 300px;
@@ -103,7 +102,7 @@ body {
   -webkit-box-shadow: inset 5px 5px 30px 5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: inset 5px 5px 30px 5px rgba(0, 0, 0, 0.75);
   box-shadow: inset 5px 5px 30px 5px rgba(0, 0, 0, 0.75);
-  z-index: 3;
+  z-index: 0;
 }
 
 .Gif-Individual {
@@ -231,7 +230,6 @@ h6 {
 
 .data-screen {
   position: absolute;
-  font-size: 0.1em;
   height: 150px;
   width: 250px;
   background-color: whitesmoke;
@@ -240,7 +238,7 @@ h6 {
   top: -150px;
   left: 0px;
   opacity: 0;
-  text-align: center;
+  z-index: -1;
 }
 
 .data-screen:hover {
@@ -249,4 +247,12 @@ h6 {
 
 .opacity:hover {
   opacity: 0.5;
+}
+
+h6 {
+  z-index: 4;
+  font-size: 0.4em;
+  position: relative;
+  top: -145px;
+  text-align: center;
 }

@@ -11,9 +11,6 @@ $(".arrow-right").mouseover(function() {
 $(".arrow-left").mouseover(function() {
   event.preventDefault();
   console.log("hover");
-  //   $(".arrow-left").animate({
-  //     width: 60
-  //   });
 
   $(".Gif-result").animate({ scrollLeft: "-=200" }, 500);
 });
@@ -69,9 +66,16 @@ function displayTopics() {
     for (i = 0; i < response.data.length; i++) {
       console.log(response.data[i].images.original.url);
       console.log(gifinfo);
-      var gif = $("<img class='img-fluid Gif-Individual opacity'>").attr(
-        "src",
-        response.data[i].images.original_still.url
+      var gif = $(
+        "<img class='img-fluid Gif-Individual opacity' src='" +
+          response.data[i].images.original_still.url +
+          "'data-still='" +
+          response.data[i].images.original_still.url +
+          "'data-animate='" +
+          response.data[i].images.original.url +
+          "'data-state='" +
+          "'still'" +
+          "'>"
       );
       var divTopicContainer = $(
         "<div class='Gif-container' favSrc='" +
@@ -80,34 +84,54 @@ function displayTopics() {
           response.data[i].images.original.url +
           "'></div>"
       );
-      var gifinfo = $(
-        "<div class = 'data-screen'><h6>" +
+      var gifinfo = $("<div class = 'data-screen'></div>");
+      var h6 = $(
+        "<h6>" +
           response.data[i].title +
-          "<br>" +
-          "Rating: " +
+          "   Rating: " +
           response.data[i].rating.toUpperCase() +
           "</h6>"
       );
-      divTopicContainer.append(gif, gifinfo);
+      divTopicContainer.append(gif, gifinfo, h6);
       $(".Gif-result").prepend(divTopicContainer);
     }
     pulse();
+    animate();
     AddToFavs();
-    myHover();
-    zoomin();
+  });
+}
+
+//event listner for  still and animated
+function animate() {
+  $(".Gif-Individual").on("click", function() {
+    console.log("im clicking");
+    var state = $(this).attr("data-state");
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
   });
 }
 
 //function for hover
-function myHover() {
-  $(".Gif-container").mouseover(function() {
-    event.preventDefault();
-    console.log("im hovering");
-    var myhover = $(this).attr("animated");
-    console.log(myhover);
-    // $(this).attr("src", myhover);
-  });
-}
+// function myHover() {
+//   $(".Gif-container").mouseover(function() {
+//     event.preventDefault();
+//     console.log("im hovering");
+//     var myhover = $(this).attr("animated");
+//     // console.log(myhover);
+//     // var myhoverElement = $(
+//     //   "<img class='img-fluid Gif-Individual opacity'>"
+//     // ).attr("src", myhover);
+//     // $(this).hide(gif);
+//     // $(this).append(myhoverElement, gifinfo);
+//     // $(".Gif-result").prepend(divTopicContainer);
+//     // $(this).attr("src", myhover);
+//   });
+// }
 
 //function to add to favourits
 function AddToFavs() {
