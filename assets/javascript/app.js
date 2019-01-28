@@ -77,10 +77,13 @@ function displayTopics() {
           "'still'" +
           "'>"
       );
+      // var download = $(
+      //   " <img class='download' src='assets/images/download.png'/>"
+      // );
+      // download.attr("downloadURL", response.data[i].images.original.url);
+
       var divTopicContainer = $(
         "<div class='Gif-container' favSrc='" +
-          response.data[i].images.original_still.url +
-          "'animated='" +
           response.data[i].images.original.url +
           "'></div>"
       );
@@ -123,8 +126,20 @@ function AddToFavs() {
     console.log("picking fav");
     var myfavSrc = $(this).attr("favSrc");
     console.log(myfavSrc);
-    var favAdded = $("<img class='img-fluid Gif-favs' src='" + myfavSrc + "'>");
+    var favAdded = $(
+      "<img class='img-fluid Gif-favs download' src='" + myfavSrc + "'>"
+    );
     $(".Inner-favs").prepend(favAdded);
+    download();
+  });
+}
+
+//function to download gif
+function download() {
+  $(".download").on("dblclick", function(e) {
+    e.preventDefault();
+    console.log("let's download");
+    window.location.href = $(this).attr("src");
   });
 }
 
