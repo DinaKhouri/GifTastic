@@ -7,3 +7,4 @@ That is my version of ghipy website.
 - To move left and right in the gifs strip just hover over the left and right arrows
 - double click any Gif to add it to favorits on the right column
 - you can add as much buttons and favourits as you want
+- double click on any fav icon to download it
