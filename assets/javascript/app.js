@@ -50,6 +50,9 @@ function zoomin() {
 //define preset topics
 var topics = ["kids", "pets", "brownies", "friends", "sports"];
 
+// create arrays for newly created favs
+var favourits = [];
+
 function displayTopics() {
   var newTopic = $(this).attr("data-name");
   var queryURL =
@@ -104,6 +107,29 @@ function displayTopics() {
   });
 }
 
+//Listen for enter on input text
+$("#Gif-input").keypress(function(element) {
+  if (element.which == 13) {
+    event.preventDefault();
+    var topic = $("#Gif-input")
+      .val()
+      .trim();
+    //search if topic already added and add it to buttons if it new
+    search(topic);
+  }
+});
+
+// function to search if topic already exists
+function search(topic) {
+  if (jQuery.inArray(topic, topics) != -1) {
+    console.log("is in array");
+    alert("search already exists, try something new!");
+  } else {
+    topics.push(topic);
+    renderButtons();
+  }
+}
+
 //event listner for  still and animated
 function animate() {
   $(".Gif-Individual").on("click", function() {
@@ -119,6 +145,21 @@ function animate() {
   });
 }
 
+// function to search favourits
+function searchf(myfavSrc) {
+  if (jQuery.inArray(myfavSrc, favourits) != -1) {
+    console.log("is in array");
+    alert("Fav already there!");
+  } else {
+    favourits.push(myfavSrc);
+    var favAdded = $(
+      "<img class='img-fluid Gif-favs download' src='" + myfavSrc + "'>"
+    );
+    $(".Inner-favs").prepend(favAdded);
+    download();
+  }
+}
+
 //function to add to favourits
 function AddToFavs() {
   $(".Gif-container").on("dblclick", function(event) {
@@ -126,11 +167,7 @@ function AddToFavs() {
     console.log("picking fav");
     var myfavSrc = $(this).attr("favSrc");
     console.log(myfavSrc);
-    var favAdded = $(
-      "<img class='img-fluid Gif-favs download' src='" + myfavSrc + "'>"
-    );
-    $(".Inner-favs").prepend(favAdded);
-    download();
+    searchf(myfavSrc);
   });
 }
 
@@ -164,8 +201,7 @@ $("#search-Gif").on("click", function(event) {
     .val()
     .trim();
 
-  topics.push(topic);
-  renderButtons();
+  search(topic);
 });
 
 // Adding a click event listener to all elements with a class of "Initial-button"
@@ -173,3 +209,4 @@ $(document).on("click", ".Initial-button", displayTopics);
 
 // Calling the renderButtons function to display the intial buttons
 renderButtons();
+
