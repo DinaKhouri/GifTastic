@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)file:///Users/Dinakhouri/Downloads/15-PausingGifs-Solved/pausing-gifs-solution.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>codewars</title>
+  </head>
+
+  <body>
+    <script src="./codewars_files/jquery.min.js"></script>
+    <script type="text/javascript">
+      function expandedForm(num) {
+        var res = [];
+
+        for (i = num.length; i > 0; i--) {
+          res.push(num[i] + "0".repeat(i));
+        }
+        res.join("+");
+      }
+
+      function validatePIN(pin) {
+        res = /^\d{4}$|^\d{6}$/g.test(pin);
+        return res;
+      }
+
+      function inArray(array1, array2) {
+        var res = [];
+        for (i = 0; i < array1.length; i++) {
+          for (j = 0; array2.length; j++) {
+            if (array1[i] === array2[j]) {
+              res.push(array1[i]);
+            }
+          }
+        }
+        return res.sort();
+      }
+
+      function alphabetPosition(text) {
+        var alpha = [
+          "1",
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+          "g",
+          "h",
+          "i",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x",
+          "y",
+          "z"
+        ];
+        var arr = [];
+        var word = text.toLowerCase();
+        for (j = 0; j < word.length; j++) {
+          for (i = 1; i < alpha.length; i++) {
+            if (alpha[i] == word[j]) {
+              arr.push(i + " ");
+            }
+          }
+        }
+        return arr.join("");
+      }
+
+      function divisors(integer) {
+        var arr = [];
+
+        for (i = 2; i < integer; i++) {
+          if (integer % i == 0) {
+            arr.push(i);
+          }
+        }
+        return arr;
+      }
+
+      // function divisors(integer) {
+      //   var arr = [];
+      //   var sqrt = Math.sqrt(integer);
+      //   for (i = 2; i < sqrt; i++) {
+      //     if (sqrt % i == 0) {
+      //       arr.push(i);
+      //     }
+      //   }
+      //   return arr;
+      // }
+
+      function list(names) {
+        var final = [];
+        for (i = 0; i < names.length - 2; i++) {
+          n = names[i].name;
+          final.push(n);
+        }
+        for (i = names.length - 2; i < names.length; i++) {
+          m = names[i] + "&" + names[i + 1];
+          final.push(m);
+        }
+        return final;
+      }
+
+      function solution(str) {
+        var newarr = [];
+        var finalarr = [];
+        var arr = str.split("");
+        if (arr.length % 2 !== 0) {
+          arr.push("_");
+        }
+        for (i = 0; i < arr.length; i = i + 2) {
+          merged = [];
+          merged.push(arr[i], arr[i + 1]);
+          newarr.push(merged);
+        }
+        for (i = 0; i < joined.length; i++) {
+          var sticked = "";
+          sticked = merged[i].join("");
+          finalarr.push(sticked);
+        }
+
+        return finalarr;
+      }
+
+      function printerError(s) {
+        var arr = [
+          "n",
+          "o",
+          "p",
+          "q",
+          "r",
+          "s",
+          "t",
+          "u",
+          "v",
+          "w",
+          "x",
+          "y",
+          "z"
+        ];
+        var pushed = [];
+        for (i = 0; i < s.length; i++) {
+          for (j = 0; j < arr.length; j++) {
+            if (s[i] === arr[j]) {
+              pushed.push(arr[j]);
+            }
+          }
+        }
+        return pushed.length + "/" + s.length;
+      }
+
+      function isIsogram(str) {
+        var i;
+        var j;
+        for (i = 0; i < str.length; i++) {
+          for (j = i + 1; j < str.length; J++) {
+            if (str[i] === str[j]) {
+              return false;
+            }
+          }
+        }
+        return true;
+      }
+    </script>
+  
+
+</body></html>
